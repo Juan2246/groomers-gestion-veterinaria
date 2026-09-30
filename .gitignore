@@ -1,0 +1,13 @@
+# Entorno local y archivos generados
+.vs/
+**/bin/
+**/obj/
+src/packages/
+*.user
+*.suo
+*.pdb
+*.mdf
+*.ldf
+*.bak
+TestResults/
+*.local.config
