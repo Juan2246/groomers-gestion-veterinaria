@@ -1,10 +1,16 @@
-# Groomers · Gestión veterinaria
+<img src="docs/brand.svg" width="76" height="76" alt="Símbolo del proyecto académico Groomers">
 
-Aplicación de escritorio para organizar propietarios, mascotas, veterinarios, medicamentos y citas en un mismo sistema. Incluye consultas operativas y un registro de acciones para revisar los cambios realizados.
+# Groomers · gestión veterinaria
 
-Desarrollé este proyecto en equipo durante el curso **Fundamentos en Sistemas de Información** de la Universidad Peruana de Ciencias Aplicadas, en el semestre 2025-01. El caso toma como referencia a Groomers Perú y permite aplicar programación orientada a objetos, persistencia relacional y una arquitectura de tres capas.
+Desarrollamos este sistema de escritorio en el curso de Fundamentos de Sistemas de Información de la UPC, durante el semestre 2025-1. El caso parte de una pregunta concreta: cómo reunir citas, mascotas, propietarios y atención veterinaria para que la agenda deje de depender de registros separados.
 
-**Es un prototipo académico.** Las capturas y la instalación de demostración utilizan datos ficticios; no representan un sistema desplegado en la clínica ni resultados de una implementación comercial.
+Mi aporte en el equipo estuvo en las pruebas funcionales, el reporte de fallos, el manual de usuario y la organización de la documentación. En 2026 recuperé el proyecto, corregí problemas de ejecución y lo publiqué con datos de demostración.
+
+**C# · Windows Forms · Entity Framework · SQL Server**
+
+Es un prototipo académico basado en el caso de Groomers Perú. No representa una implantación en la empresa. El símbolo de esta página es una identidad creada para presentar el proyecto, no el logotipo oficial de la clínica.
+
+[Ver el caso en mi portafolio](https://portafolio-juan-torres-puce.vercel.app/proyectos/groomers)
 
 ## Recorrido visual
 
