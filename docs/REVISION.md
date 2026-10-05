@@ -18,6 +18,12 @@ La versión de portafolio conserva C#, Windows Forms, .NET Framework 4.7.2, Enti
 | Reportes | Rango inclusivo por días, rechazo de rangos invertidos y consulta tolerante a mascotas archivadas |
 | Presentación | Campos de contraseña ocultos y tablas de citas y reportes de solo lectura |
 
+## Inicialización de la demo
+
+La contraseña de `admin` se recibe por `GROOMERS_DEMO_PASSWORD` y se transforma
+con el mismo PBKDF2 del programa antes de crear la base. No hay contraseña ni
+hash reutilizable incluidos en el instalador. El script rechaza bases existentes.
+
 ## Verificación realizada
 
 - Recompilación de las tres capas en Release sin errores ni advertencias.
@@ -36,3 +42,7 @@ Los contextos de datos de varios módulos permanecen asociados a su instancia de
 
 - [Almacenamiento de contraseñas de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html).
 - [Rfc2898DeriveBytes de Microsoft](https://learn.microsoft.com/dotnet/api/system.security.cryptography.rfc2898derivebytes).
+
+### Mantenimiento de privacidad (octubre de 2026)
+
+Se repitió la compilación Release y se verificó el nuevo instalador con cinco comprobaciones contra una base temporal propia: clave obligatoria, instalación, verificación del hash con la clave elegida, rechazo de otra clave y segunda ejecución sin alterar registros. El script reproducible es scripts/Verificar-Demo.ps1; retira únicamente su propia base temporal al finalizar.
