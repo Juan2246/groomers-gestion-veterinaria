@@ -8,7 +8,7 @@ Desarrollé este proyecto en equipo durante el curso **Fundamentos en Sistemas d
 
 ## Recorrido visual
 
-[Ficha del proyecto: contexto, arquitectura y alcance](docs/groomers-ficha.pdf)
+[Revisión técnica: arquitectura, correcciones y alcance](docs/REVISION.md)
 
 ![Gestión de citas con datos de demostración](docs/images/citas.png)
 
@@ -48,15 +48,17 @@ flowchart LR
 2. Crear una base de demostración nueva. El instalador **rechaza un nombre que ya exista** y no elimina bases de datos.
 
    ```powershell
-   sqlcmd -S localhost -E -C -b -f 65001 -v DatabaseName="DB_GROOMERS_DEMO" -i database/01-schema.sql
-   sqlcmd -S localhost -E -C -b -f 65001 -v DatabaseName="DB_GROOMERS_DEMO" -i database/02-demo.sql
+   $claveDemo = Read-Host "Contraseña propia para la demo (12 a 128 caracteres)" -AsSecureString
+   $env:GROOMERS_DEMO_PASSWORD = [System.Net.NetworkCredential]::new('', $claveDemo).Password
+   .\scripts\Inicializar-Demo.ps1 -DatabaseName DB_GROOMERS_DEMO -Servidor localhost
+   Remove-Item Env:\GROOMERS_DEMO_PASSWORD
    ```
 
    Para SQL Server Express, sustituir `localhost` por `localhost\SQLEXPRESS` en los comandos y en la configuración.
 
 3. Revisar `src/Presentacion/App.config`: `data source` e `initial catalog` deben coincidir con la instancia y la base creadas. La conexión usa autenticación integrada de Windows. No hay credenciales privadas en el repositorio.
 4. Abrir `src/TF_GROOMERS_G4.sln`, restaurar los paquetes NuGet y establecer **Presentacion** como proyecto de inicio.
-5. Compilar y ejecutar. La cuenta pública de demostración es `admin`, con contraseña `GroomersDemo!2026`. Esta cuenta es exclusivamente para la base ficticia local.
+5. Ejecutar e ingresar como `admin` con la contraseña definida localmente. El repositorio no incluye una contraseña compartida.
 
 También se puede restaurar y compilar desde una consola de desarrollador de Visual Studio:
 
@@ -79,6 +81,11 @@ La autorización de registro de usuarios sigue el flujo académico de confirmaci
 
 ## Equipo académico
 
-Alexandra Belén Casas Melgar · Miguel Alessandro Calderón Sobrino · Luz Verónica Gonzales Valerio · Jhon Anderson Maquera Llanque · Juan Sebastián Torres Sánchez.
+Trabajo académico desarrollado en equipo. Esta publicación conserva su autoría
+colectiva y presenta el aporte de **Juan Sebastián Torres Sánchez** en su
+portafolio de Ingeniería de Sistemas de Información. Los nombres de compañeros
+se omiten de la versión pública por privacidad.
 
-Proyecto presentado por **Juan Sebastián Torres Sánchez** como parte de su portafolio de Ingeniería de Sistemas de Información.
+La ficha PDF anterior se retiró porque incluía información identificable y un
+acceso de demostración. Esos contenidos permanecen en el historial de Git y en
+copias anteriores; este mantenimiento no reescribe el historial.

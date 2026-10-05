@@ -11,3 +11,11 @@ src/packages/
 *.bak
 TestResults/
 *.local.config
+
+# Configuración privada y claves locales
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key

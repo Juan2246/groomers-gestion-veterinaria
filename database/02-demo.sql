@@ -5,7 +5,10 @@ GO
 SET XACT_ABORT ON;
 BEGIN TRANSACTION;
 IF EXISTS(SELECT 1 FROM Usuario) THROW 50002, 'La demo requiere una base recién creada.', 1;
-INSERT INTO Usuario(UsuarioID, Contraseña) VALUES ('admin', 'PBKDF2-SHA256$600000$52PU7DT7BBwPjG/hJ+3U2w==$+Q5Gn46pnszH6YO/F8C8335L5Y0BUgUpQnRyByCBQm4=');
+DECLARE @DemoPasswordHash VARCHAR(255) = '$(DemoPasswordHash)';
+IF @DemoPasswordHash NOT LIKE 'PBKDF2-SHA256$600000$%'
+    THROW 50003, 'Inicialice la demo con scripts/Inicializar-Demo.ps1.', 1;
+INSERT INTO Usuario(UsuarioID,Contraseña) VALUES ('admin',@DemoPasswordHash);
 INSERT INTO Propietario(DNI,Nombre,Telefono,Email,Eliminado,FechaActualizacion,UsuarioActualizacion) VALUES
 ('00000001','Propietario Demo A','000000001','demo.a@example.invalid',0,GETDATE(),'admin'),
 ('00000002','Propietario Demo B','000000002','demo.b@example.invalid',0,GETDATE(),'admin');
